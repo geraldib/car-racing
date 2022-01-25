@@ -7,6 +7,9 @@ var gameRestart = true;
 var gameWinner = '';
 var gameWinnerColor = 'white';
 var gameLoader = false;
+var gameOver = false;
+
+var gameLevelIndex = 0;
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');
@@ -39,14 +42,18 @@ function loadLevel(level){
 function updateAll() {
 	drawAll();
 
-	if (gameLoader) {
-		if (gameRestart) {
-			moveAll();
+	if (!gameOver) {
+		if (gameLoader) {
+			if (gameRestart) {
+				moveAll();
+			} else {
+				drawWinningScreen();
+			}
 		} else {
-			drawWinningScreen();
+			drawSignalStart();
 		}
 	} else {
-		drawSignalStart();
+		drawGameOverScreen();
 	}
 
 }
@@ -54,17 +61,6 @@ function updateAll() {
 function moveAll() {
 	blueCar.move();
 	greenCar.move();
-}
-
-function drawWinningScreen() {
-	colorRect(0,0, canvas.width,canvas.height, 'rgba(0, 0, 0, 0.4)');
-	colorText(gameWinner, canvas.width/2 - 200, canvas.height/2, gameWinnerColor);
-	colorText('Press "Enter" to Restart', canvas.width/2 - 370, canvas.height/2 + 100, 'white');
-}
-
-function drawSignalStart() {
-	colorRect(0,0, canvas.width,canvas.height, 'rgba(0, 0, 0, 0.4)');
-	colorText('Ready', canvas.width/2 - 100, canvas.height/2, '#7fd496');
 }
 
 function drawAll() {

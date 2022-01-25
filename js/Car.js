@@ -10,6 +10,8 @@ class Car {
 
 	constructor(image) {
 
+		this.score = 0;
+
 		this.x = 75;
 		this.y = 75;
 		this.ang = 0;

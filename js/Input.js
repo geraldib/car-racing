@@ -3,6 +3,7 @@ var mouseY = 0;
 
 function setupInput() {
 	document.addEventListener('keydown', gameReset);
+	document.addEventListener('keydown', handleGameOver);
 
 	document.addEventListener('keydown', keyPressed);
 	document.addEventListener('keyup', keyReleased);
@@ -11,12 +12,29 @@ function setupInput() {
 }
 
 function gameReset(evt){
-	if(evt.keyCode === 13 && !gameRestart) {
+	if(evt.keyCode === 13 && !gameRestart && !gameOver) {
 		gameRestart = true;
 		gameLoader = false;
 		setTimeout(function () {
 			gameLoader = true;
 		}, 2000);
+	}
+}
+
+function handleGameOver(evt){
+	if(evt.keyCode === 13 && gameOver) {
+		blueCar.score = 0;
+		greenCar.score = 0;
+		gameRestart = true;
+		gameWinner = '';
+		gameWinnerColor = 'white';
+		gameLoader = false;
+		setTimeout(function () {
+			gameLoader = true;
+		}, 2000);
+		gameOver = false;
+		gameLevelIndex = 0;
+		startGame();
 	}
 }
 
