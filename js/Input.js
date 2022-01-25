@@ -34,7 +34,7 @@ function handleGameOver(evt){
 		}, 2000);
 		gameOver = false;
 		gameLevelIndex = 0;
-		startGame();
+		loadLevel(allLevels[gameLevelIndex]);
 	}
 }
 

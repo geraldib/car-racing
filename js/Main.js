@@ -30,12 +30,12 @@ function startGame(){
 	var framesPerSecond = 30;
 	setInterval(updateAll, 1000/framesPerSecond);
 	setupInput();
-	loadLevel(levelOne);
+	loadLevel(allLevels[gameLevelIndex]);
 }
 
 function loadLevel(level){
 	trackGrid = [...level];
-	blueCar.reset(carPicP1, 'Player 1', 'blue');
+	blueCar.reset(carPicP1, 'Player 1', '#7dc4ff');
 	greenCar.reset(carPicP2, 'Player 2', '#75ff6e');
 }
 
