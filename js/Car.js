@@ -12,6 +12,8 @@ class Car {
 
 		this.score = 0;
 
+		this.gear;
+
 		this.x = 75;
 		this.y = 75;
 		this.ang = 0;
@@ -63,12 +65,14 @@ class Car {
 
 		if(this.keyHeld_Gas) {
 			this.speed += DRIVE_POWER;
+			this.gear = 'forward';
 		}
 		if(this.keyHeld_Reverse) {
 			this.speed -= REVERSE_POWER;
+			this.gear = 'reverse';
 		}
 		if (Math.abs(this.speed) > MIN_SPEED_TO_TURN) {
-			if (this.keyHeld_Gas) {
+			if (this.gear === 'forward') {
 				if(this.keyHeld_TurnLeft) {
 					this.ang -= TURN_RATE;
 				}
