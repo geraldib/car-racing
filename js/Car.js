@@ -68,11 +68,20 @@ class Car {
 			this.speed -= REVERSE_POWER;
 		}
 		if (Math.abs(this.speed) > MIN_SPEED_TO_TURN) {
-			if(this.keyHeld_TurnLeft) {
-				this.ang -= TURN_RATE;
-			}
-			if(this.keyHeld_TurnRight) {
-				this.ang += TURN_RATE;
+			if (this.keyHeld_Gas) {
+				if(this.keyHeld_TurnLeft) {
+					this.ang -= TURN_RATE;
+				}
+				if(this.keyHeld_TurnRight) {
+					this.ang += TURN_RATE;
+				}
+			} else {
+				if(this.keyHeld_TurnLeft) {
+					this.ang += TURN_RATE;
+				}
+				if(this.keyHeld_TurnRight) {
+					this.ang -= TURN_RATE;
+				}
 			}
 		}
 
