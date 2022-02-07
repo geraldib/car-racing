@@ -26,12 +26,18 @@ function loadImages() {
 		{varName: carPicP1,     theFile: "./images/player1car.png"},
 		{varName: carPicP2,     theFile: "./images/player2car.png"},
 
-		{trackType: TRACK_ROAD,    theFile: "./images/track_road.png"},
-		{trackType: TRACK_WALL,    theFile: "./images/track_wall.png"},
-		{trackType: TRACK_FLAG,    theFile: "./images/track_flag.png"},
-		{trackType: TRACK_TREE,    theFile: "./images/track_tree.png"},
-		{trackType: TRACK_GOAL,    theFile: "./images/track_goal.png"},
-		{trackType: TRACK_FAN_GIRL, theFile: "./images/track_fan_girl.png"},
+		{trackType: TRACK_ROAD,    			theFile: "./images/track_road.png"},
+		{trackType: TRACK_WALL,    			theFile: "./images/track_wall.png"},
+		{trackType: TRACK_FLAG,    			theFile: "./images/track_flag.png"},
+		{trackType: TRACK_TREE,          	theFile: "./images/track_tree.png"},
+		{trackType: TRACK_GOAL,           	theFile: "./images/track_goal.png"},
+		{trackType: TRACK_WALL_DESTROYED, 	theFile: "./images/track_wall_destroyed.png"},
+		{trackType: TRACK_HORROR_TREE, 		theFile: "./images/track_horror_tree.png"},
+		{trackType: TRACK_WALL_CASTLE, 		theFile: "./images/track_wall_castle.png"},
+		{trackType: TRACK_DIRT, 			theFile: "./images/track_dirt.png"},
+		{trackType: TRACK_LAVA, 			theFile: "./images/track_lava.png"},
+		{trackType: TRACK_LAVA_CAR, 		theFile: "./images/track_lava_car.png"},
+		{trackType: TRACK_MOUNTAIN, 		theFile: "./images/track_mountain.png"},
 	];
 
 	picsToLoad = imageList.length;

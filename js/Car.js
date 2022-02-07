@@ -11,6 +11,7 @@ class Car {
 	constructor(image) {
 
 		this.score = 0;
+		this.isDestroyed = false;
 
 		this.gear;
 
@@ -18,6 +19,9 @@ class Car {
 		this.y = 75;
 		this.ang = 0;
 		this.speed = 0;
+
+		this.startingPosX = 75;
+		this.startingPosY = 75;
 
 		this.carPic;
 		this.carPlayer;
@@ -41,11 +45,7 @@ class Car {
 		this.controlKeyRight = rightKey;
   	}
 
-	reset(image, player, color) {
-		this.carPic = image;
-		this.carPlayer = player;
-		this.carColor = color;
-		this.speed = 0;
+	playerStartPlace(){
 		for(var eachRow=0;eachRow<TRACK_ROWS;eachRow++) {
 			for(var eachCol=0;eachCol<TRACK_COLS;eachCol++) {
 				var arrayIndex = rowColToArrayIndex(eachCol, eachRow); 
@@ -54,10 +54,21 @@ class Car {
 					this.ang = -Math.PI/2;
 					this.x = eachCol * TRACK_W + TRACK_W/2;
 					this.y = eachRow * TRACK_H + TRACK_H/2;
+					this.startingPosX = this.x;
+					this.startingPosY = this.y;
 					return;
 				}
 			}
 		}
+	}
+
+	reset(image, player, color) {
+		this.carPic = image;
+		this.carPlayer = player;
+		this.carColor = color;
+		this.speed = 0;
+		this.isDestroyed = false;
+		this.playerStartPlace();
 	}
 
 	move() {
@@ -89,13 +100,31 @@ class Car {
 			}
 		}
 
+		if (this.isDestroyed) {
+			this.speed = 0;
+		}
+
 		this.x += Math.cos(this.ang) * this.speed;
 		this.y += Math.sin(this.ang) * this.speed;
+
 		carTrackHandling(this);
 	}
 
 	draw() {
-		drawBitmapCenteredWithRotation(this.carPic, this.x,this.y, this.ang);
+		if (!this.isDestroyed) {
+			drawBitmapCenteredWithRotation(this.carPic, this.x,this.y, this.ang);
+		}
+	}
+
+	destroyed(){
+		this.isDestroyed = true;
+	}
+
+	respawn() {
+		this.x = this.startingPosX;
+		this.y = this.startingPosY;
+		this.ang = -Math.PI/2;
+		this.isDestroyed = false;
 	}
 
 }

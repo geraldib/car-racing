@@ -12,7 +12,14 @@ const TRACK_PLAYERSTART = 2;
 const TRACK_FLAG = 3;
 const TRACK_TREE = 4;
 const TRACK_GOAL = 5;
-const TRACK_FAN_GIRL = 6;
+const TRACK_WALL_DESTROYED = 6;
+const TRACK_HORROR_TREE = 7;
+const TRACK_WALL_CASTLE = 8;
+const TRACK_LAVA = 9;
+const TRACK_LAVA_CAR = 10;
+const TRACK_DIRT = 11;
+const TRACK_MOUNTAIN = 12;
+
 
 
 function returnTileTypeAtColRow(col, row) {
@@ -28,21 +35,11 @@ function returnTileTypeAtColRow(col, row) {
 function carTrackHandling(car) {
 	var carTrackCol = Math.floor(car.x / TRACK_W);
 	var carTrackRow = Math.floor(car.y / TRACK_H);
-	var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
+	// var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
 
-	if(carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
-		carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
-
+	if(carTrackCol >= 0 && carTrackCol < TRACK_COLS && carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
 		var tileHere = returnTileTypeAtColRow( carTrackCol,carTrackRow );
-
-		if(tileHere == TRACK_GOAL) {
-			handleWinner(car);
-		} else if(tileHere == TRACK_FLAG || tileHere == TRACK_TREE || tileHere == TRACK_WALL) {
-			car.x -= Math.cos(car.ang) * car.speed;
-			car.y -= Math.sin(car.ang) * car.speed;
-			car.speed *= -0.5;
-		}
-
+		handleObstacleByTile(tileHere, car, carTrackCol,carTrackRow);
 	} // end of valid col and row
 } // end of carTrackHandling func
 
@@ -68,3 +65,5 @@ function drawTracks() {
 	} // end of for each row
 
 } // end of drawTracks func
+
+
